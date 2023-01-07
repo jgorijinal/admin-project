@@ -34,8 +34,8 @@
 </template>
 <script setup>
 import { Avatar } from '@element-plus/icons-vue'
-import { Lock } from  '@element-plus/icons-vue'
-import { ref } from "vue";
+import { Lock } from '@element-plus/icons-vue'
+import { ref } from "vue"
 // 表单数据
 const formData = ref({
   username: "cuiyang123",
