@@ -28,7 +28,7 @@
             show-password
           />
         </el-form-item>
-        <el-button @click="submit" type="primary" style="width:100%;margin-bottom:30px">登录</el-button>
+        <el-button @click="submit" :loading="isLoading" type="primary" style="width:100%;margin-bottom:30px">登录</el-button>
       </el-form>
     </div>
 </template>
@@ -67,17 +67,21 @@ const rules = ref({
 // 表单实例
 const loginFormRef = ref()
 const store = useStore()
+const isLoading = ref(false) // 加载状态
 // 提交
 const submit = () => {
   loginFormRef.value.validate((isOK) => {
     if (isOK) {
       console.log('校验通过')
+      isLoading.value = true
       // 发送登录请求
       store.dispatch('user/loginAction', formData.value)
       .then(() => {
         console.log('登陆请求成功')
+        isLoading.value = false
       }).catch(() => {
         console.log('登陆请求失败')
+        isLoading.value = false
       })
     } else {
       console.log('校验不通过')

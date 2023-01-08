@@ -25,7 +25,7 @@ export default {
         }).then(res => {
           console.log(res)
           // TODO: token 处理
-          const { token } = res.data.data
+          const { token } = res
           context.commit('changeToken', token)
           resolve()
         }).catch(err => {
