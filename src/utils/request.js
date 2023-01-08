@@ -13,7 +13,11 @@ service.interceptors.request.use((config) => {
   return Promise.reject(err)
 })
 
-
+// 服务端会返回这种格式的内容
+// code: 200,
+// data: {token: "56ebb892-4480-4127-b06e-ca9efd5e9e60"},
+// message: "登录成功",
+// success: true,
 service.interceptors.response.use(res => {
   const { success, data , message } =  res.data
   if (success) {
@@ -29,3 +33,4 @@ service.interceptors.response.use(res => {
 })
 
 export default service
+
