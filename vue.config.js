@@ -10,6 +10,14 @@ function resolve(dir) {
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'https://api.imooc-admin.lgdsunday.club',
+          changeOrigin: true
+        }
+      }
+    },
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()],
