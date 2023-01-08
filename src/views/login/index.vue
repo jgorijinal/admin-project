@@ -35,13 +35,34 @@
 <script setup>
 import { Avatar } from '@element-plus/icons-vue'
 import { Lock } from '@element-plus/icons-vue'
+import { validatePassword }  from './rules'
 import { ref } from "vue"
 // 表单数据
 const formData = ref({
-  username: "cuiyang123",
-  password: ""
+  username: "super-admin",
+  password: 123456
 })
-const rules = []
+// 校验规则
+const rules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message:'用户名必须要填写'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      message:'密码必须要填写'
+    },
+    {
+      trigger: 'blur',
+      validator: validatePassword
+    }
+  ]
+})
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
