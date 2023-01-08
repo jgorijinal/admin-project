@@ -37,10 +37,11 @@ import { Avatar } from '@element-plus/icons-vue'
 import { Lock } from '@element-plus/icons-vue'
 import { validatePassword }  from './rules'
 import { ref } from "vue"
+import { useStore } from 'vuex'
 // 表单数据
 const formData = ref({
   username: "super-admin",
-  password: 123456
+  password: ''
 })
 // 校验规则
 const rules = ref({
@@ -65,12 +66,19 @@ const rules = ref({
 })
 // 表单实例
 const loginFormRef = ref()
+const store = useStore()
 // 提交
 const submit = () => {
   loginFormRef.value.validate((isOK) => {
     if (isOK) {
       console.log('校验通过')
-      // TODO: 发送登录请求
+      // 发送登录请求
+      store.dispatch('user/loginAction', formData.value)
+      .then(() => {
+        console.log('登陆请求成功')
+      }).catch(() => {
+        console.log('登陆请求失败')
+      })
     } else {
       console.log('校验不通过')
     }

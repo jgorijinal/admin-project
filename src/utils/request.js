@@ -1,8 +1,15 @@
 import axios from 'axios'
 
-const instance = axios.create({
+const service = axios.create({
   timeout: 5000,
   baseURL: process.env.VUE_APP_BASE_API
 })
 
-export default instance
+service.interceptors.request.use((config) => {
+  config.headers.icode = '733D0317E18454D4'
+  return config
+}, (err) => {
+  return Promise.reject(err)
+})
+
+export default service
