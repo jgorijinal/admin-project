@@ -38,6 +38,7 @@ import { Lock } from '@element-plus/icons-vue'
 import { validatePassword }  from './rules'
 import { ref } from "vue"
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 // 表单数据
 const formData = ref({
   username: "super-admin",
@@ -67,6 +68,7 @@ const rules = ref({
 // 表单实例
 const loginFormRef = ref()
 const store = useStore()
+const router = useRouter()
 const isLoading = ref(false) // 加载状态
 // 提交
 const submit = () => {
@@ -79,6 +81,7 @@ const submit = () => {
       .then(() => {
         console.log('登陆请求成功')
         isLoading.value = false
+        router.push('/')
       }).catch(() => {
         console.log('登陆请求失败')
         isLoading.value = false
