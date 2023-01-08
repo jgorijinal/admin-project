@@ -2,7 +2,7 @@
     <div class="login-container">
       <el-form
         class="login-form" 
-        ref="ruleFormRef"
+        ref="loginFormRef"
         :model="formData"
         :rules="rules"
       > 
@@ -28,7 +28,7 @@
             show-password
           />
         </el-form-item>
-        <el-button type="primary" style="width:100%;margin-bottom:30px">登录</el-button>
+        <el-button @click="submit" type="primary" style="width:100%;margin-bottom:30px">登录</el-button>
       </el-form>
     </div>
 </template>
@@ -63,6 +63,19 @@ const rules = ref({
     }
   ]
 })
+// 表单实例
+const loginFormRef = ref()
+// 提交
+const submit = () => {
+  loginFormRef.value.validate((isOK) => {
+    if (isOK) {
+      console.log('校验通过')
+      // TODO: 发送登录请求
+    } else {
+      console.log('校验不通过')
+    }
+  })
+}
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
